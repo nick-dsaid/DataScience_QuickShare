@@ -1,0 +1,156 @@
+{
+  "main": {
+    "id": "c7934e58867c36a8",
+    "type": "split",
+    "children": [
+      {
+        "id": "cf71b988a103ea23",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Machine Learning/Python for Machine Learning Masterclass/Support Vector Machines.md",
+            "mode": "source",
+            "source": true
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "19c40e50c8766426",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed880cce927198d0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ed3bfb3b23ba2a72",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d8aca74bad6dbaef",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 231
+  },
+  "right": {
+    "id": "0e4dc917cfbc1574",
+    "type": "split",
+    "children": [
+      {
+        "id": "de2b90c74d70e909",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "256613ae56e7af7f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Machine Learning/Python for Machine Learning Masterclass/Support Vector Machines.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "74e0be55b88bd96b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false
+              }
+            }
+          },
+          {
+            "id": "42132b0327022ffa",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Machine Learning/Python for Machine Learning Masterclass/Support Vector Machines.md"
+              }
+            }
+          },
+          {
+            "id": "b55594d0e9e36324",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          },
+          {
+            "id": "b4fb51d6b61e8079",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_nodes",
+              "state": {}
+            }
+          },
+          {
+            "id": "ae761cee5f17f739",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_style",
+              "state": {}
+            }
+          },
+          {
+            "id": "543ef090b637c396",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 217
+  },
+  "active": "cf71b988a103ea23",
+  "lastOpenFiles": [
+    "Machine Learning/Python for Machine Learning Masterclass/Support Vector Machines.md",
+    "Math for ML/Linear Algebra for ML/Section 3_ Matrix Properties.md",
+    "Math for ML/Linear Algebra for ML/Linear Algebra for ML.md",
+    "Machine Learning/Python for Machine Learning Masterclass/Python for Machine Learning Masterclass.md",
+    "Machine Learning/Python for Machine Learning Masterclass/KNN.md",
+    "Machine Learning/Python for Machine Learning Masterclass/Logistic Regression.md",
+    "Machine Learning/Python for Machine Learning Masterclass/Linear Regression.md",
+    "Tableau/Master Class - Now You See, and Now You Don't.md",
+    "stats.stackexchange.com/questions/111467.md",
+    "Docker and Kubernetes/Docker and Kubernetes.md"
+  ]
+}

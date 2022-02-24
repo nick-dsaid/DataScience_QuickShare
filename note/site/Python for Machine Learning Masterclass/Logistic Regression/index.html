@@ -1,0 +1,590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+    
+    
+      
+        <title>Logistic Regression - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e8d9bf0c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Logistic Regression
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../KNN/" class="md-tabs__link md-tabs__link--active">
+        Python for Machine Learning Masterclass
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Python for Machine Learning Masterclass
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python for Machine Learning Masterclass" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python for Machine Learning Masterclass
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KNN/" class="md-nav__link">
+        KNN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linear%20Regression/" class="md-nav__link">
+        Linear Regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Logistic Regression
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Logistic Regression
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    ---
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20for%20Machine%20Learning%20Masterclass/" class="md-nav__link">
+        Python for Machine Learning Masterclass Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Support%20Vector%20Machines/" class="md-nav__link">
+        Support Vector Machines
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<p><img alt="" src="https://images.unsplash.com/photo-1498516899385-9b17a8891c86?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2532&amp;q=80" /></p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li>Transforming Linear Regression to Logistic Regression</li>
+<li>Mathematical Theory behidn Logistic Regression</li>
+<li>Simple implementation of Logistic Regression for Classification Problem</li>
+<li>Interpreting Results<ul>
+<li>Odds Ratio and Coefficients</li>
+<li>Classification Metrics</li>
+<li>ROC Curves</li>
+</ul>
+</li>
+<li>Multiclass classification with logistic regression</li>
+</ul>
+<h2 id="-">---</h2>
+<p>[[#Overview|Overview]]
+1. [[#1.0 Theory:|1.0 Theory:]][[#1.1 Logistic Function|1.1 Logistic Function]]
+    1. [[#1.2 Linear to Logistic Math|1.2 Linear to Logistic Math]]
+        1. [[#1.2.1 Odds|1.2.1 Odds]]
+        2. [[#1.2.2 Maximum Likelihood on How to Fit the Curve|1.2.2 Maximum Likelihood on How to Fit the Curve]]
+2. [[#2.0 Classification Metrics|2.0 Classification Metrics]]
+    1. [[#2.1 Confusion Matrix &amp; Accuracy|2.1 Confusion Matrix &amp; Accuracy]]
+    2. [[#2.2 Precision, Recall, and F1-Score|2.2 Precision, Recall, and F1-Score]]
+    3. [[#2.3 ROC Curves|2.3 ROC Curves]]</p>
+<h1 id="10-theory">1.0 Theory:</h1>
+<hr />
+<h2 id="11-logistic-function">1.1 Logistic Function</h2>
+<pre><code class="language-ad-note">$$\sigma(x) = \frac{1}{1 + e^{-x}}$$
+</code></pre>
+<p>![[Pasted image 20220216224657.png]]</p>
+<hr />
+<h2 id="12-linear-to-logistic-math">1.2 Linear to Logistic Math</h2>
+<p>![[Pasted image 20220216225044.png]]
+![[Pasted image 20220216225058.png]]</p>
+<p>To be able to interpret the beta coefficient in Logistic Regression, there two terms we need to know:</p>
+<h3 id="121-odds">1.2.1 Odds</h3>
+<ul>
+<li>Often referred to as N to 1</li>
+<li>The odds of an event with probability <span class="arithmatex">\(p\)</span> is defined as the <strong>chance of the event happening divided by the chance of the event not happening</strong>: <span class="arithmatex">\(\frac{p}{1-p}\)</span></li>
+<li>This allow us to solve for coefficients and feature x in terms of <strong>log odds</strong></li>
+<li>To solve for log odds, divided by denominator ![[Pasted image 20220216225935.png]]</li>
+<li>Well, there's essentially two steps being shown here. I'm going to divide both sides by Y hat and then I can simply do the reciprocal or flip the sign here, because, again, you'll notice that on the left hand side, I start with either the power of negative and then the some of the beta coefficient times, the feature set, which means if I reverse that signs that it's E to the power of positive, the sum of the coefficients times X, I just need to take the reciprocal or flip that fraction over to get that relationship.</li>
+<li>![[Pasted image 20220216225817.png]]</li>
+<li>![[Pasted image 20220216230430.png]]</li>
+<li>we know that we can get rid of an E by canceling it with the natural log, which is the log odds, and keep in mind, sometimes you'll see this written out as just log. So that essentially implies that the base of this logarithm is natural</li>
+<li>![[Pasted image 20220216230555.png]]</li>
+<li>![[Pasted image 20220216230943.png]]</li>
+<li>So what I have inside that natural log are my odds and I'm just taking the log of those odds. And that's equal to this linear combination of the coefficients times, the feature on the right hand</li>
+<li>![[Pasted image 20220216231235.png]]</li>
+<li>So now, if we consider is equal to zero point five or halfway point in terms of log odds is now equal to zero. Then you'll realize that as you keep getting closer and closer to one, the natural log of these odds is actually going to go to infinity. So the probability gets closer to one.</li>
+<li>You essentially have one divided by a very, very small number. And the natural log of that starts to go towards infinity. Likewise, as your probability goes to zero, then you're essentially saying zero divided by something very close to one which is starting to go to negative infinity.</li>
+<li>So in terms of log odds, we actually now have the points at infinity and negative infinity because these points that already define they have values of zero and one. Keep in mind, these are the actual data points that we're talking about here, not our predictions.</li>
+<li>So if we actually then convert that logistic curve to be on a log odd scale, it looks like a straight line. And the coefficients in terms are now in the change in log odds, so essentially all I'm saying here s that if I show this equation in terms of a linear relationship between beta coefficient and the X feature, then y y axis has to then be in terms of log odds.</li>
+<li>And because we're converting things to log odds, my y axis goes from negative infinity to positive infinity, where the class points that are already defined are at negative infinity and positive infinity. So this is essentially transforming that squiggle, if you will, or that curve of the logistic function into a straight line. But that did come at the cost of having to transform the Y axis into log odds that go from negativ infinity to positive infinity.</li>
+<li>So now that I did this, the question arises, was all this work worth it? Is the beta coefficient actually simple to interpret now?</li>
+<li>![[Pasted image 20220216231842.png]]</li>
+<li>![[Pasted image 20220216231927.png]]</li>
+<li>![[Pasted image 20220216232015.png]]</li>
+<li>![[Pasted image 20220216232039.png]]</li>
+<li>![[Pasted image 20220216232107.png]]</li>
+</ul>
+<hr />
+<h3 id="122-maximum-likelihood-on-how-to-fit-the-curve">1.2.2 Maximum Likelihood on How to Fit the Curve</h3>
+<p>Details of maximum likelihood are out the scope
+![[Pasted image 20220216232439.png]]</p>
+<p>![[Pasted image 20220216232638.png]]
+![[Pasted image 20220216232658.png]]
+![[Pasted image 20220216232721.png]]</p>
+<blockquote>
+<p>This equation is the chart on the right
+$$ \ln(\frac{p}{1-p}) = \ln(odds)$$</p>
+</blockquote>
+<p>![[Pasted image 20220216233402.png]]
+![[Pasted image 20220216233437.png]]</p>
+<blockquote>
+<p>The last question is the chart of the left <span class="arithmatex">\(\hat{y}\)</span></p>
+</blockquote>
+<p>![[Pasted image 20220216233817.png]]
+- So I just choose some line to start off with along the log odds, axes and instead of residual sum of squares, because I can't really do that with negative infinity and positive infinity, what I'm going to do is take the X values and project them onto this line.
+- And recall, this is just ==<strong>a line representing the beta coefficient times that feature value of X</strong>==. And when I project these points onto this line, they're no longer all the way at negative infinity and infinity, which means I can actually calculate the log odds for the projected points on this line.
+- And you should recall that once I have things in terms of log odds, I can convert these directly to probabilities onto my logistic regression model.</p>
+<blockquote>
+<ul>
+<li>Perfect fit: all blue at the top at 1; all red at the bottom at 0</li>
+<li>Likelihood = Product of Probabilities of Belonging to Class 1</li>
+</ul>
+</blockquote>
+<p>![[Pasted image 20220216234139.png]]</p>
+<blockquote>
+<p>The perfect likelihood should be 1
+The calculated likelihood is the value to be maximized
+![[Pasted image 20220216234231.png]]</p>
+</blockquote>
+<p>![[Pasted image 20220216234258.png]]
+- As a quick side note, in practice, we actually maximized the log of the likelihoods, that is to say there would be a log or natural log on each of those probabilities, zero point nine zero point, etc. 
+- So it'd be the exact same math we saw before, except everything would go inside a log. And that's just because the mathematics ends up working a lot nicer when it comes to things like the minimization function and the gradient descent. 
+- But the idea and intuition is the same. Maximizing the likelihoods is the same as maximizing the log of the likelihoods.
+![[Pasted image 20220216234424.png]]
+- Now, if we think back to this projection along the log odds y axis, I know that there's going to be some set of beta coefficients that is going to maximize these log likelihoods. And that's essentially all we're doing.
+- I'm choosing the best coefficient values in log odds terms.That creates the maximum likelihood as far as predicting the correct class calls for these trading data points. 
+- And so what I can do is start experimenting with these different lines, essentially continually adjusting this line if it calculate those maximum likelihoods and continue this until I find the best fitting set of coefficient values.
+- ![[Pasted image 20220216235906.png]]
+- So a quick note again on the mathematics, while we are actually trying to maximize the likelihood from a computer science standpoint and as far as the algorithms are concerned, we still need something to minimize because greed, the methods can really only search for Minimum's.
+- It's extremely difficult to search for a maximum because you essentially have a gradient that explodesand it's almost impossible to figure out if you've actually reached a max value.
+- However, because of derivatives, it's much easier for minimum's with stochastic gradient descent. So that means if we actually go through the math and formulate this all out in terms of a cost function, we seek to minimize the following. And formally this is known as log loss.
+- ![[Pasted image 20220216235954.png]]</p>
+<h2 id="-_1">---</h2>
+<h1 id="20-classification-metrics">2.0 Classification Metrics</h1>
+<hr />
+<h2 id="21-confusion-matrix-accuracy">2.1 Confusion Matrix &amp; Accuracy</h2>
+<p>![[Pasted image 20220217000243.png]]
+![[Pasted image 20220217000332.png]]
+![[Pasted image 20220217000351.png]]</p>
+<hr />
+<h2 id="22-precision-recall-and-f1-score">2.2 Precision, Recall, and F1-Score</h2>
+<p>![[Pasted image 20220217000527.png]]
+![[Pasted image 20220217000541.png]]</p>
+<hr />
+<h2 id="23-roc-curves">2.3 ROC Curves</h2>
+<p>![[Pasted image 20220217000725.png]]
+![[Pasted image 20220217000854.png]]
+![[Pasted image 20220217000923.png]]
+![[Pasted image 20220217000936.png]]</p>
+<p>![[Pasted image 20220217001137.png]]</p>
+<p>![[Pasted image 20220217001217.png]]
+![[Pasted image 20220217001405.png]]</p>
+<p><a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html">Plot Multiclass ROC</a></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Linear%20Regression/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linear Regression" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Linear Regression
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Python%20for%20Machine%20Learning%20Masterclass/" class="md-footer__link md-footer__link--next" aria-label="Next: Python for Machine Learning Masterclass Overview" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Python for Machine Learning Masterclass Overview
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigatioon.top", "toc.follow", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      
+    
+  </body>
+</html>

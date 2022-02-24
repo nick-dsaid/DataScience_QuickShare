@@ -1,0 +1,28 @@
+site_name: My Docs
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigatioon.top
+    - toc.follow
+    - toc.integrate
+
+
+extra_javascripts:
+  - javascripts/publish.admonition.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true

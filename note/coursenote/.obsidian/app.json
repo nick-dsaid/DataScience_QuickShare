@@ -1,0 +1,12 @@
+{
+  "attachmentFolderPath": "Machine Learning/_resources",
+  "pdfExportSettings": {
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "2",
+    "downscalePercent": 100
+  },
+  "promptDelete": false,
+  "legacyEditor": false,
+  "livePreview": true
+}

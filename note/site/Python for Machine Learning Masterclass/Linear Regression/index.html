@@ -1,0 +1,950 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.1">
+    
+    
+      
+        <title>Linear Regression - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e8d9bf0c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linear Regression
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../KNN/" class="md-tabs__link md-tabs__link--active">
+        Python for Machine Learning Masterclass
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Python for Machine Learning Masterclass
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python for Machine Learning Masterclass" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python for Machine Learning Masterclass
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KNN/" class="md-nav__link">
+        KNN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Linear Regression
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Logistic%20Regression/" class="md-nav__link">
+        Logistic Regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20for%20Machine%20Learning%20Masterclass/" class="md-nav__link">
+        Python for Machine Learning Masterclass Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Support%20Vector%20Machines/" class="md-nav__link">
+        Support Vector Machines
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<p><img alt="" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80" /></p>
+<ol>
+<li>[[#Overview|Overview]]</li>
+<li>[[#Understanding OLS|Understanding OLS]]<ol>
+<li>[[#Formula for OLS (Intuitive)|Formula for OLS (Intuitive)]]</li>
+<li>[[#Formula for OLS (Equation)|Formula for OLS (Equation)]]</li>
+<li>[[#Limitations of Linear Regression|Limitations of Linear Regression]]</li>
+</ol>
+</li>
+<li>[[#Understand Cost Function|Understand Cost Function]]<ol>
+<li>[[#Mean Squared Error (MSE)|Mean Squared Error (MSE)]]</li>
+</ol>
+</li>
+<li>[[#Gradient Descent|Gradient Descent]]<ol>
+<li>[[#Intro to Linear Regression|Intro to Linear Regression]]</li>
+<li>[[#To Walkthrough an Single Feature Example|To Walkthrough an Single Feature Example]]</li>
+<li>[[#To Walkthrough an Two Feature Example|To Walkthrough an Two Feature Example]]</li>
+</ol>
+</li>
+<li>[[#Linear Regression in Python|Linear Regression in Python]]<ol>
+<li>[[#Simple Linear Regression|Simple Linear Regression]]</li>
+<li>[[#Overview on Scikit-Learn|Overview on Scikit-Learn]]</li>
+<li>[[#Evaluating Regression|Evaluating Regression]]<ol>
+<li>[[#Mean Absolute Error|Mean Absolute Error]]</li>
+<li>[[#Mean Squared Error|Mean Squared Error]]</li>
+<li>[[#Root Mean Square Error|Root Mean Square Error]]</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<hr />
+<h1 id="overview">Overview</h1>
+<p>![[Pasted image 20220208231922.png]]</p>
+<p>![[Pasted image 20220212124652.png]]</p>
+<hr />
+<h1 id="understanding-ols">Understanding OLS</h1>
+<ul>
+<li>using Simple Linear Regression as example</li>
+</ul>
+<blockquote>
+<p>OLS -&gt; y=mx+b
+There is only room for one possible feature x</p>
+<p>At later part will see there is a need like gradient descent to scale this to multiple features</p>
+</blockquote>
+<pre><code>![[Pasted image 20220208233744.png]]
+</code></pre>
+<p>![[Pasted image 20211013004110.png]]
+![[Pasted image 20220208233918.png]]
+![[Pasted image 20220208233956.png]]</p>
+<pre><code class="language-ad-info">title: y hat (Not y)
+
+
+Thereis usuallky no set of Betas to create a perfect fit to y!
+</code></pre>
+<hr />
+<h2 id="formula-for-ols-intuitive">Formula for OLS (Intuitive)</h2>
+<p>![[msedge_EMtik5iNnt.png]]</p>
+<pre><code class="language-ad-info">title: Intuitive Explanation for OLS
+
+
+Slope of the regression line is the weighted average of $$
+\frac{yi-\bar{y}}{x^i - \bar{x}}$$
+</code></pre>
+<hr />
+<h2 id="formula-for-ols-equation">Formula for OLS (Equation)</h2>
+<p>![[Pasted image 20220208235124.png]]</p>
+<hr />
+<h2 id="limitations-of-linear-regression">Limitations of Linear Regression</h2>
+<p>![[msedge_avdWgYmrsy.png]]
+![[Pasted image 20211013001800.png]]</p>
+<hr />
+<h1 id="understand-cost-function">Understand Cost Function</h1>
+<p>What we know so far:
+- Linear Relationships
+    - y mx+b
+-  OLS
+    - Solve simple linear regression
+    - Not scalable for multiple features
+    - Translating real data to Matrix Notation
+    - Generalized formula for Beta coefficients</p>
+<h2 id="mean-squared-error-mse">Mean Squared Error (MSE)</h2>
+<pre><code class="language-ad-note">title: Average Squared Error for **m** rows
+$$\frac{1}{m}\sum^m_{j=1}(y^j - \hat{y}^j)^2$$
+</code></pre>
+<pre><code class="language-ad-note">title: Cost Function Define by Squared Error
+
+$$ J(\beta) = \frac{1}{2m}\sum^m_{j=1}(y^j - \hat{y}^j)^2$$
+
+Function below where the y_hat is replace with the generalized function
+
+$$ J(\beta) = \frac{1}{2m}\sum^m_{j=1}(y^j - \sum^n_{i=0}\beta_ix^j_i)^2$$
+
+- The 2m is because taking the derivative by setting to 0 (canccel with power of 2)
+</code></pre>
+<pre><code class="language-ad-note">title: Additional 1/2 is for convenience for derivative
+$$J(\beta) = \frac{1}{2m}\sum^m_{j=1}(y^j - \hat{y}^j)^2$$
+
+Then to substitute y_hat 
+
+$$J(\beta) = \frac{1}{2m}\sum^m_{j=1}(y^j - \sum^n_{i=0}\beta_ix^j_i)^2$$
+</code></pre>
+<p>![[Pasted image 20220212113805.png]]
+- Unforunately, it's not sacalable to try to get an analytical solution to minize this cost function
+- Later part will learn to use gradient descent to minimize the cost functiion here</p>
+<hr />
+<h1 id="gradient-descent">Gradient Descent</h1>
+<h2 id="intro-to-linear-regression">Intro to Linear Regression</h2>
+<ul>
+<li>Now we have the <strong>Cost Function</strong> to minimzize</li>
+<li>Taking the cost function derivative and then solving for zero to get the set of <strong>Beta Coefficients</strong> wioll be too difficult to solve directly through analytical solution</li>
+<li>Instead we describe this <strong>Cost Function</strong> through vectorized matrix notation and use gradient descent to have a computer figure out the set of Beta Coefficient values that <strong>mininize the cost/loss function</strong>.</li>
+</ul>
+<pre><code class="language-ad-note">title: Recall the Cost Function (Rewritten)
+
+- where $k$ is the number of features
+
+
+$$ \frac{\partial J}{\partial a\beta_k}(\beta) = 
+\frac{1}{m} \sum^m_{j=1} (y^j - \sum^n_{i=0}\beta_i x^j_i) (-x^j_k)$$
+
+- Also recall the data is in the form of a **matrix X** with a **vector of labels y**
+- Whcih means if we need a $\beta$ for each feature, we can express a vector $\beta$ value
+- That means we can plugin our equation of the derivative of the loss function
+- ![[Pasted image 20220212115241.png]]
+- ![[Pasted image 20220212115417.png]]
+- ![[Pasted image 20220212115523.png]]
+- ![[Pasted image 20220212115544.png]]
+- ![[Pasted image 20220212115628.png]]
+- This is because the $\beta$ is the only unknown here
+- The question is **What is the best way to &quot;guess&quot;** the correct $\beta$ values that minimize the gradient
+</code></pre>
+<hr />
+<h2 id="to-walkthrough-an-single-feature-example">To Walkthrough an Single Feature Example</h2>
+<ul>
+<li>We can use gradient descent to computationally search for the coefficeint that minimize this gradient. </li>
+<li>Let's visually explore what this looks like int he case of a single Beta value</li>
+<li>Given a cost function of <span class="arithmatex">\(J(\beta)\)</span> how can we computationally search for the correct value of <span class="arithmatex">\(\beta\)</span> that minimizes the gradient of the cost functions</li>
+<li>What would be search process look like for a single <span class="arithmatex">\(\beta\)</span> value</li>
+<li>![[Pasted image 20220212120229.png]]</li>
+<li>![[Pasted image 20220212120329.png]]<ul>
+<li>The orange curve is the derivative of the cost function</li>
+<li>Steeper gradient at the start give larger steps</li>
+<li>Smaller gradient at the end gives smaller steps</li>
+</ul>
+</li>
+</ul>
+<h2 id="to-walkthrough-an-two-feature-example">To Walkthrough an Two Feature Example</h2>
+<p>![[Pasted image 20220212120647.png]]
+![[Pasted image 20220212120659.png]]</p>
+<h2 id="-">---</h2>
+<h1 id="linear-regression-in-python">Linear Regression in Python</h1>
+<hr />
+<h2 id="simple-linear-regression">Simple Linear Regression</h2>
+<ul>
+<li>Limited to one X feature</li>
+<li>To create a best-fit line to map out a linear relationship betweent total advertising spedn adn resulting sales</li>
+</ul>
+<pre><code class="language-Python">X = df['total_spend']
+y = df['sales']
+
+help(np.polyfit)
+# Solve by Ordinaly Least Square
+# Return the coefficient y = B1X + B0
+
+np.polyfit(x, y, deg=1)
+# array([0.04868788, 4.24302822])
+
+np.polyfit(x, y, deg=3)
+# can use to fit multi-polynomial 
+# y = B3x**3 + B2*x**2 + B1x +B0
+</code></pre>
+<hr />
+<h2 id="overview-on-scikit-learn">Overview on Scikit-Learn</h2>
+<ul>
+<li>Phiosophy of Scikit-Learn<ul>
+<li>Focus on applying models and performance metrics</li>
+<li>This is more pragmatic industry style, rather than academic approach of describing the model and its parameter</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-Python">from sklearn.model_family import ModelAlgo 
+
+mymodel = ModelAlgo(param1, param2)
+mymodel.fit(X_train, y_train) 
+predictions = mymodel.predict (X_test) 
+
+from sklearn.metrics import error_metric
+performance = error_metric(y_test, predictions)
+</code></pre>
+<hr />
+<h2 id="evaluating-regression">Evaluating Regression</h2>
+<hr />
+<h3 id="mean-absolute-error">Mean Absolute Error</h3>
+<ul>
+<li>![[Pasted image 20220212122918.png]]</li>
+<li>Issues:<ul>
+<li>Won't punish large errors</li>
+<li>![[Pasted image 20220212123004.png]]</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="mean-squared-error">Mean Squared Error</h3>
+<ul>
+<li>![[Pasted image 20220212123132.png]]</li>
+</ul>
+<hr />
+<h3 id="root-mean-square-error">Root Mean Square Error</h3>
+<ul>
+<li>![[Pasted image 20220212123144.png]]</li>
+</ul>
+<hr />
+<h3 id="residuals">Residuals</h3>
+<ul>
+<li>Good to separately evaluate residuals <span class="arithmatex">\((y - \hat{y})\)</span>, besides calculating performance metrics
+![[Pasted image 20220212123602.png]]</li>
+<li>This visualization between X and Y won't work when dealing with more than one X feature</li>
+<li>We can plot residual error against true y values
+![[Pasted image 20220212123816.png]]
+![[Pasted image 20220212123908.png]]</li>
+</ul>
+<pre><code class="language-Python">sns.scatterplot(x=y_test, y=test_residuals)
+plt.axhline(y=0, color='r', ls='--')
+
+sns.displot(test_residuals, bins=25, kde=True)
+</code></pre>
+<ul>
+<li>Example 1:
+![[Pasted image 20220212124026.png]]</li>
+<li>
+<p>Example 2:![[Pasted image 20220212124120.png]]</p>
+</li>
+<li>
+<p>Normal Plot using Scipy![[Pasted image 20220212124401.png]]</p>
+</li>
+</ul>
+<hr />
+<h2 id="model-deployment-coefficients-interpretation">Model Deployment &amp; Coefficients Interpretation</h2>
+<p>![[Pasted image 20220212124943.png]]
+![[Pasted image 20220212124959.png]]</p>
+<hr />
+<h2 id="polynomial-regression">Polynomial Regression</h2>
+<ul>
+<li>Motivations<ul>
+<li>Non-linear feature relationships to label<ul>
+<li>Higher order transforms the relationship becomes more lienar</li>
+<li>To capture more signals in the data</li>
+<li>Much easier to find a beta coefficient thant the original features![[Pasted image 20220212130213.png]]</li>
+</ul>
+</li>
+<li>Interaction terms between features<ul>
+<li>What if features are only significant when in <strong>sync</strong> with one another</li>
+<li>Example given: Newspaper and TVs advertisement</li>
+<li>The simplest way is to create a new feature that <strong>multiplies two existing features together</strong> to create an <strong>interaction term</strong>. We can keep the original features, and add on this interaction term</li>
+<li>Scikit-learn does this with <strong>preprocessing</strong>. <strong>PolynomialFeatures</strong> automatically creates both higher order feature polynomials and the interaction terms between the all feature combinations</li>
+<li>The features created include<ul>
+<li>The bias (the value of 1.0)</li>
+<li>Values raised to a power for each degree (e.g. x^1, x^2, x^3, ..)</li>
+<li>Interactions between all pairs of features (e.g. x1 * x2, x1 * x3, ...)</li>
+</ul>
+</li>
+<li>Example<ul>
+<li>Converting Two Features A and B<ul>
+<li>1, A, B, A, AB, B</li>
+</ul>
+</li>
+<li>Generalized terms of features <span class="arithmatex">\(X_1\)</span>  and <span class="arithmatex">\(X_2\)</span><ul>
+<li>1,<span class="arithmatex">\(X_1\)</span>, <span class="arithmatex">\(X_2\)</span>, <span class="arithmatex">\(X^2_1\)</span>, <span class="arithmatex">\(X_1 X_2\)</span>, <span class="arithmatex">\(X^2_2\)</span> </li>
+</ul>
+</li>
+<li>Example if row was X=2 and X,=3 <ul>
+<li>1,2,3, 4, 6, 9</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="-_1">---</h2>
+<h1 id="bias-variance-trade-off">Bias Variance Trade-Off</h1>
+<hr />
+<ul>
+<li>Overfitting<ul>
+<li>Low bias, high variance</li>
+<li>Harder to detect</li>
+</ul>
+</li>
+<li>Underfitting<ul>
+<li>Too much bias, Little Variance</li>
+</ul>
+</li>
+<li>Related Concept: Parcemonial </li>
+</ul>
+<h2 id="-_2">---</h2>
+<h1 id="regularization">Regularization</h1>
+<hr />
+<ul>
+<li>
+<p>Regularization seeks to solve a few common model issues by </p>
+<ul>
+<li>Minimizing model complexity</li>
+<li>Penalizing the loss function</li>
+<li>Reducing model overfitting (add more bias to reduce model variance)</li>
+</ul>
+</li>
+<li>
+<p>In general, it is a way to reduce model overfitting and variance</p>
+<ul>
+<li>Require soem additional bias</li>
+<li>Require a search for a optimal penalty hyperparameter</li>
+</ul>
+</li>
+<li>
+<p>Here, covers the 3 main types of Regularization</p>
+<ul>
+<li>L1 Regularization</li>
+<li>L2 Regularization</li>
+<li>Combining L1 and L2</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="l1-regularization">L1 Regularization</h2>
+<p>![[Pasted image 20220212171702.png]]
+![[Pasted image 20220212171730.png]]</p>
+<blockquote>
+<p>Highlighted is the penalty term
+<span class="arithmatex">\(\lamda\)</span> is the hyperparameter</p>
+</blockquote>
+<pre><code class="language-ad-note">title: LASSO
+Least Absolute Shrinkage and Selection Operator
+</code></pre>
+<p>![[Pasted image 20220214001828.png]]
+![[Pasted image 20220214001933.png]]</p>
+<hr />
+<h3 id="example">Example</h3>
+<p>![[Pasted image 20220215170400.png]]</p>
+<p>![[Pasted image 20220215170540.png]]</p>
+<blockquote>
+<p>This works similar to the np.linspace, where the esp is the n_alphas defines how many a to test and smaller eps means smaller steps (finer search grid) thus longer computations</p>
+</blockquote>
+<p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html">documentation</a>
+<img alt="" src="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoCV.html" /></p>
+<hr />
+<h3 id="hands-on">Hands-On</h3>
+<p>![[Pasted image 20220215170348.png]]</p>
+<hr />
+<h2 id="l2-regularization">L2 Regularization</h2>
+<p>![[Pasted image 20220212171858.png]]</p>
+<blockquote>
+<p><span class="arithmatex">\(RSS = \sum^n_{i=1} (y_i - \hat{y})\)</span>
+RSS = Residual Sum of Squares
+<span class="arithmatex">\(\lambda\)</span> can be any value from 0 to positive infinity
+![[Pasted image 20220212171910.png]]
+![[Pasted image 20220213003015.png]]</p>
+</blockquote>
+<hr />
+<h3 id="example_1">Example</h3>
+<pre><code class="language-ad-attention">title: Equation of the Linear Regression Not Change
+
+
+
+</code></pre>
+<p>![[Pasted image 20220213222055.png]]
+![[Pasted image 20220213230432.png]]
+![[Pasted image 20220213230457.png]]
+![[Pasted image 20220214000554.png]]</p>
+<pre><code class="language-ad-note">title: Note
+
+And if you're introducing this shrinkage term, which is trying to minimize this idea of beta squared,that means even small increases in beta one.
+
+Again, the slope of your line is going to really start to show up a lot more in this squared term andthen your land, the parameter would just be a tuning factor of how much do you want to punish by beta squared.
+
+But regardless of lambda, as long it's not equal to zero, we're still going to punish those larger slope's. So, again, for a single feature, this would actually lower your slope value.
+
+**So this is really the cusp of what Rich Regression is trying to do, is try to make sure that you're not overly responsive to your training data.**
+
+That way, when you unknown data comes in, you have a little more bias and you're going to generalize better to new unseen data.
+
+</code></pre>
+<p>![[Pasted image 20220214001042.png]]
+![[Pasted image 20220214001231.png]]</p>
+<h3 id="hands-on_1">Hands-On</h3>
+<p>![[Pasted image 20220214001309.png]]</p>
+<pre><code class="language-Python">from sklearn.linear_model import RidgeCV
+ridge_cv_model = RidgeCV(alphas=(0.1, 1.0, 10.0))
+
+ridge_cv_model.fit(X_train, y_train)
+
+
+# Find out the name of SCORER
+from sklearn.metrics import SCORERS
+SCORERS.keys()
+</code></pre>
+<hr />
+<h2 id="l1-l2-elastic-net">L1 + L2 (Elastic Net)</h2>
+<p>![[Pasted image 20220212172208.png]]
+![[Pasted image 20220212172225.png]]
+![[Pasted image 20220212172248.png]]</p>
+<blockquote>
+<p>Below is the re-written version of Lasso and Ridge</p>
+</blockquote>
+<p>![[Pasted image 20220215171913.png]]</p>
+<hr />
+<h3 id="example_2">Example</h3>
+<p>![[Pasted image 20220215172132.png]]
+![[Pasted image 20220215172146.png]]
+![[Pasted image 20220215172251.png]]
+![[Pasted image 20220215172311.png]]</p>
+<pre><code class="language-ad-note">Residual sum of squares actually look like, we can think of the minimization path for the residual sum of squares as just lines we're essentially solving for trying to find the coefficients that minimize that loss function.
+
+So obviously, you would kind of start solving for these with **gradient descent** and you could begin to start solving these.
+
+But remember, you're going to be subject to that penalty term being Lessner equal to S.
+</code></pre>
+<p>![[Pasted image 20220215172408.png]]
+![[Pasted image 20220215172530.png]]
+![[Pasted image 20220215172621.png]]
+![[Pasted image 20220215172653.png]]</p>
+<pre><code class="language-ad-note">In this case, the corner of the squares for two dimensions means one of the coefficients on that corner is going to be zero, just by definition of how this is centered.
+
+So, again, to make it clear from a geometry perspective for LASO, we're dealing with **hyper cubes**. And in the simplest case, we're going to have just two features here to make that square.
+
+And it's highly likely if you come into contact with something in the shape of a square, that you're going to hit one of those corners, meaning one of those coefficients is going to be zero.
+
+This is why LASO is likely to lead to coefficients going all the way to zero.
+</code></pre>
+<p>![[Pasted image 20220215172924.png]]</p>
+<p>![[Pasted image 20220215173005.png]]
+![[Pasted image 20220215173026.png]]</p>
+<blockquote>
+<p>Note the two distinct <span class="arithmatex">\(\lambda\)</span>
+![[Pasted image 20220215173102.png]]
+![[Pasted image 20220215173132.png]]
+![[Pasted image 20220215173159.png]]</p>
+</blockquote>
+<hr />
+<h3 id="hands-on_2">Hands-on</h3>
+<p>![[Pasted image 20220215173317.png]]
+![[Pasted image 20220215173337.png]]</p>
+<h2 id="-_3">---</h2>
+<h1 id="feature-scaling">Feature Scaling</h1>
+<hr />
+<ul>
+<li>Feature scaling inmproves the convergence of steepest descent algorithms, which do not possess the property of scale invariance. </li>
+<li>If features are on different scales, certain weights may update faster than others since the feature values x, play a role in the weight updates.</li>
+<li>What is ideal is they should optimize in about the same time</li>
+<li>Scaling the features so that their respective ranges are uniform is important |in comparing measurements that have different units. </li>
+<li>Allows us directly compare model coefficients to each other.</li>
+</ul>
+<hr />
+<ul>
+<li>Feature scaling caveats: <ul>
+<li>Must always scale neW unseen data before feeding to model. </li>
+<li>Effects direct interpretability of feature coefficients <ul>
+<li>Easier to compare coefficients to one another, harder to relate back to original unscaled feature.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>Feature scaling benefits: </p>
+<ul>
+<li>Can lead to great increases in performance. </li>
+<li>Absolutely necessary for some models. </li>
+<li>Virtually no "real" downside to scaling features.</li>
+</ul>
+</li>
+<li>
+<p>Two main ways to scale features: </p>
+<ul>
+<li><strong>Standardization</strong> <ul>
+<li>Rescales data to have a mean of 0 and standard deviation of 1.</li>
+</ul>
+</li>
+<li><strong>Normalization</strong><ul>
+<li>Rescales all data values to be between 0-1.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>![[Pasted image 20220212234516.png]]
+![[Pasted image 20220212234542.png]]</p>
+<pre><code class="language-ad-warning">title: Feature Scaling Process
+
+- Feature Scaling Process
+    - Perform train test split
+    - Fit to training feature data
+    - Transform training feature data
+    - Transform test feature data
+</code></pre>
+<p>![[Pasted image 20220212234802.png]]</p>
+<pre><code class="language-ad-warning">title: Scaling Feature Impact SGD
+
+- Can negatively impact stochastic gradient descent
+- [here](https://stats.stackexchange.com/questions/111467)
+
+</code></pre>
+<h2 id="-_4">---</h2>
+<h1 id="cross-validation">Cross Validation</h1>
+<hr />
+<p>![[Pasted image 20220212235558.png]]
+![[Pasted image 20220212235634.png]]
+![[Pasted image 20220212235711.png]]</p>
+<table border="0">
+    <tr>
+            <td>Header 1</td>
+            <td>Header 2</td>
+    </tr>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../KNN/" class="md-footer__link md-footer__link--prev" aria-label="Previous: KNN" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              KNN
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Logistic%20Regression/" class="md-footer__link md-footer__link--next" aria-label="Next: Logistic Regression" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Logistic Regression
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigatioon.top", "toc.follow", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8aa65030.min.js"></script>
+      
+    
+  </body>
+</html>
